@@ -80,7 +80,7 @@ namespace DemoCraft
         private void Trade()
         {
             //Show Merchant's inventory
-            Print("Not available yet.");
+            Print(Merchant.ShowInventory());
             Pause();
         }
         private void ShowInstructions()

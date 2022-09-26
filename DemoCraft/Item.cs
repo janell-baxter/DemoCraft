@@ -4,6 +4,7 @@ using System.Text;
 
 namespace DemoCraft
 {
+   
     public class Item
     {
         public string Name;

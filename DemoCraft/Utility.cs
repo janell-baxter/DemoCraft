@@ -21,8 +21,13 @@ namespace DemoCraft
         //expression bodied method
         public string ConvertTextToLowerCase(string message) => message.ToLower();
 
-        public static string GetInputFromPlayer() => Console.ReadLine();
+        //expression bodied method
+       // public static string GetInputFromPlayer() => Console.ReadLine();
 
+        public static string GetInputFromPlayer()
+        {
+            return Console.ReadLine();
+        }
 
         public static void Pause()
         {

@@ -21,7 +21,7 @@ namespace DemoCraft
             get => name;
             set
             {
-
+                name = value;
             }
         }
 
@@ -30,13 +30,14 @@ namespace DemoCraft
             get => currency;
             set
             {
+                currency = value;
             }
         }
 
         public void ChangeName()
         {
             Print("What would you like your name to be?");
-            name = GetInputFromPlayer();
+            Name = GetInputFromPlayer();
             Print("Your name has been updated!");
             Pause();
             Clear();
