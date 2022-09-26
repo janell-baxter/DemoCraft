@@ -19,8 +19,8 @@ namespace DemoCraft
                     Value = 52.10
                 }
                 );
-            Merchant.Inventory.Add(new Item("Golden Orb", 500.89));  
-                
+            //Merchant.Inventory.Add(new Item("Golden Orb", 500.89));  
+            Merchant.Inventory = GetInventoryFromExternalFile("../../../data/traderInventory.txt");
      
             //concatenation
             //Print("Welcome " + Player.Name + " to the Crafting Station!");
@@ -36,32 +36,25 @@ namespace DemoCraft
         private void Menu()
         {
             HUD();
-            Print("Choose an option:\n1. See Inventory\n2. Search for Item\n3. Trade\n4. Change Name");
+            Print("Choose an option:\n1. See Inventory\n2. Search for Item\n3. Trade\n4. Change Name\n5. Instructions");
             switch(GetInputFromPlayer())
             {
                 case "1":
-                    Print(Player.ShowInventory());
+                    ShowInventory();
                     break;
-
-                
                 case "2":
-                    Print("Enter the name of an item:");
-                    if (ItemIsInInventory(Player.Inventory, GetInputFromPlayer()))
-                        Print("Item is in inventory");
-                    else
-                        Print("You do not have that item");
+                    Search();
                     break;
                 case "3":
-                    //Show Merchant's inventory
-                    Print("Not available yet.");
-                    Pause();
-
+                    Trade();
                     break;
                 case "4":
                     Player.ChangeName();
                     break;
-                
 
+                case "5":
+                    ShowInstructions();
+                    break;
                 default:
                     Print("Please enter only one of the options listed.");
                     break;
@@ -69,7 +62,32 @@ namespace DemoCraft
             
             Menu();
         }
-
+        private void ShowInventory()
+        {
+            Print(Player.ShowInventory());
+            Pause();
+        }
+        private void Search()
+        {
+            
+            Print("Enter the name of an item:");
+            if (ItemIsInInventory(Player.Inventory, GetInputFromPlayer()))
+                Print("Item is in inventory");
+            else
+                Print("You do not have that item");
+            Pause();
+        }
+        private void Trade()
+        {
+            //Show Merchant's inventory
+            Print("Not available yet.");
+            Pause();
+        }
+        private void ShowInstructions()
+        {
+            Print(ReadTextFromExternalFile("../../../data/instructions.txt"));
+            Pause();
+        }
         private void HUD()
         {
             Print($"{Player.Name} | {Player.Currency.ToString("c")}");

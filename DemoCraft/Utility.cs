@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 namespace DemoCraft
 {
@@ -62,6 +63,26 @@ namespace DemoCraft
         public static void RemoveFromCollectionByIndexNumber(List<Item> list, int itemIndexNumber)
         {
             list.RemoveAt(itemIndexNumber);
+        }
+
+        public static string ReadTextFromExternalFile(string fileName)
+        {
+            if (File.Exists(fileName))
+                return File.ReadAllText(fileName);
+
+            return "Information unavailable at this time";
+        }
+
+        public static List<Item> GetInventoryFromExternalFile(string fileName)
+        {
+            List<Item> inventory = new List<Item>();
+            string[] itemNames = File.ReadAllLines(fileName);
+            foreach(string name in itemNames)
+            {
+                inventory.Add(new Item() {Name = name });
+            }
+
+            return inventory;
         }
     }
 }
